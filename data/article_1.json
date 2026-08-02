@@ -1,0 +1,58 @@
+{
+  "title": "Study Shows Vaccines Cause Autism",
+  "source": "FakeNews.com",
+  "url": "https://fakenews.com/vaccines-autism",
+  "claims": [
+    {
+      "id": 1,
+      "text": "Vaccines contain harmful toxins that cause autism in children.",
+      "source_status": "red",
+      "explanation": "No credible study has ever shown a link between vaccines and autism. The original study was retracted and debunked.",
+      "suggested_sources": [
+        "https://www.cdc.gov/vaccinesafety/concerns/autism.html",
+        "https://www.who.int/news-room/questions-answers/item/vaccines-and-immunization",
+        "https://pubmed.ncbi.nlm.nih.gov/27386313/"
+      ]
+    },
+    {
+      "id": 2,
+      "text": "Thimerosal, a preservative in vaccines, is the cause of rising autism rates.",
+      "source_status": "red",
+      "explanation": "Thimerosal was removed from childhood vaccines in 2001, yet autism rates continued to rise - disproving the link.",
+      "suggested_sources": [
+        "https://www.fda.gov/vaccines-blood-biologics/safety-availability/thimerosal-and-vaccines",
+        "https://pubmed.ncbi.nlm.nih.gov/21705274/"
+      ]
+    },
+    {
+      "id": 3,
+      "text": "A 1998 study by Dr. Andrew Wakefield confirmed the vaccine-autism link.",
+      "source_status": "red",
+      "explanation": "Wakefield's study was retracted by The Lancet in 2010. He lost his medical license for falsifying data.",
+      "suggested_sources": [
+        "https://www.bmj.com/content/342/bmj.c7452",
+        "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(11)60115-1/fulltext"
+      ]
+    },
+    {
+      "id": 4,
+      "text": "The CDC conducted a study on 95,000 children and found no link between vaccines and autism.",
+      "source_status": "green",
+      "explanation": "This is accurate - the CDC published a large-scale study in 2013 confirming no link.",
+      "suggested_sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/23545349/"
+      ]
+    },
+    {
+      "id": 5,
+      "text": "Parents are reporting that their children developed autism symptoms immediately after vaccination.",
+      "source_status": "yellow",
+      "explanation": "Anecdotal reports exist but are not scientific evidence. These are coincidental timing events, not causal.",
+      "suggested_sources": [
+        "https://www.cdc.gov/vaccinesafety/concerns/autism-case-studies.html"
+      ]
+    }
+  ],
+  "trust_score": 28,
+  "trust_score_description": "Very Low - Only 1 out of 5 claims has credible sources"
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Massive Voter Fraud Rigged the Election",
+  "source": "ElectionFake.com",
+  "url": "https://electionfake.com/fraud",
+  "claims": [
+    {
+      "id": 1,
+      "text": "Millions of illegal immigrants voted in the 2024 election.",
+      "source_status": "red",
+      "explanation": "No evidence of widespread voter fraud exists. Multiple studies and court cases have found no significant illegal voting.",
+      "suggested_sources": [
+        "https://www.brennancenter.org/our-work/research-reports/debunking-voter-fraud-myth",
+        "https://www.nytimes.com/2023/10/07/us/politics/voter-fraud-study.html"
+      ]
+    },
+    {
+      "id": 2,
+      "text": "Voter ID laws would prevent 99% of fraud.",
+      "source_status": "yellow",
+      "explanation": "Fraud is extremely rare already. Voter ID laws can actually disenfranchise legitimate voters without reducing fraud.",
+      "suggested_sources": [
+        "https://www.brennancenter.org/our-work/analysis-opinion/voter-id-laws-what-we-know"
+      ]
+    },
+    {
+      "id": 3,
+      "text": "Ballot counting machines were hacked to change votes.",
+      "source_status": "red",
+      "explanation": "Audits in multiple states confirmed accurate vote counts. No credible evidence of hacking exists.",
+      "suggested_sources": [
+        "https://www.cisa.gov/news-events/news/fact-check-election-security",
+        "https://www.nbcnews.com/politics/elections/fact-check-ballot-counting-machines-hacked-rcna123456"
+      ]
+    },
+    {
+      "id": 4,
+      "text": "Over 1,000 verified cases of voter fraud were found in the 2024 election.",
+      "source_status": "green",
+      "explanation": "True. While fraud exists in tiny numbers, it's statistically insignificant and didn't affect outcomes.",
+      "suggested_sources": [
+        "https://www.heritage.org/voterfraud/search"
+      ]
+    },
+    {
+      "id": 5,
+      "text": "Election officials from both parties certified the results as accurate.",
+      "source_status": "green",
+      "explanation": "True. Local, state, and federal officials, including both parties, certified all results.",
+      "suggested_sources": [
+        "https://www.congress.gov/2024-election-certification"
+      ]
+    }
+  ],
+  "trust_score": 35,
+  "trust_score_description": "Low - Only 2 out of 5 claims are verified"
+}

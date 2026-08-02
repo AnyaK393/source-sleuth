@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Sleuth - Visual Citation Mapping</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Copy all your CSS here - same as before */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .navbar { background: rgba(255, 255, 255, 0.95); padding: 1rem 2rem; box-shadow: 0 2px 20px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: #667eea; }
+        .logo i { margin-right: 10px; }
+        .nav-links a { color: #333; text-decoration: none; margin-left: 30px; padding: 8px 16px; border-radius: 20px; transition: all 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background: #667eea; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .hero { text-align: center; padding: 40px 20px 20px 20px; color: white; }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .hero p { font-size: 1.2rem; opacity: 0.9; }
+        .input-section { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); margin: 20px 0; }
+        .input-box { display: flex; gap: 10px; margin-bottom: 15px; }
+        .input-box input { flex: 1; padding: 15px 20px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 1rem; transition: all 0.3s; }
+        .input-box input:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.2); }
+        .input-box button { padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s; }
+        .input-box button:hover { transform: scale(1.05); }
+        .quick-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .quick-links span { color: #666; font-size: 0.9rem; }
+        .sample-btn { padding: 8px 16px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 20px; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; }
+        .sample-btn:hover { background: #667eea; color: white; border-color: #667eea; }
+        .trust-score-container { background: white; border-radius: 20px; padding: 30px; margin: 20px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .trust-score { display: flex; align-items: center; gap: 30px; }
+        .score-circle { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: background 0.5s; }
+        .score-circle .score-number { font-size: 2.5rem; font-weight: bold; color: #333; }
+        .score-circle .score-label { font-size: 0.8rem; color: #666; }
+        .score-info h3 { font-size: 1.3rem; color: #333; }
+        .score-info p { color: #666; font-size: 1rem; }
+        .visualization-container { background: white; border-radius: 20px; padding: 20px; margin: 20px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .vis-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+        .vis-header h2 { color: #333; }
+        .legend { display: flex; gap: 20px; }
+        .legend span { display: flex; align-items: center; gap: 5px; font-size: 0.9rem; color: #555; }
+        #visualization { min-height: 500px; display: flex; justify-content: center; align-items: center; background: #fafafa; border-radius: 12px; position: relative; }
+        #visualization svg { width: 100%; height: 500px; }
+        .link { stroke: #999; stroke-opacity: 0.6; stroke-width: 2px; }
+        .claims-container { background: white; border-radius: 20px; padding: 20px; margin: 20px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .claims-container h2 { margin-bottom: 20px; color: #333; }
+        .claim-item { padding: 15px; margin-bottom: 10px; border-radius: 12px; border-left: 5px solid #ccc; background: #f9f9f9; transition: all 0.3s; cursor: pointer; }
+        .claim-item:hover { transform: translateX(5px); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .claim-item.red { border-left-color: #F44336; background: #ffebee; }
+        .claim-item.green { border-left-color: #4CAF50; background: #e8f5e9; }
+        .claim-item.yellow { border-left-color: #FFC107; background: #fff8e1; }
+        .claim-item .claim-text { font-weight: 500; margin-bottom: 5px; }
+        .claim-item .claim-status { font-size: 0.85rem; color: #666; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .badge { padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; color: white; }
+        .badge.green { background: #4CAF50; }
+        .badge.yellow { background: #FFC107; color: #333; }
+        .badge.red { background: #F44336; }
+        .source-suggestion { margin-top: 8px; font-size: 0.9rem; background: white; padding: 10px; border-radius: 8px; display: none; }
+        .source-suggestion.show { display: block; }
+        .source-suggestion a { color: #667eea; text-decoration: none; display: block; padding: 2px 0; }
+        .expand-btn { margin-top: 8px; padding: 5px 12px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
+        .expand-btn:hover { background: #5a67d8; }
+        .compare-container { text-align: center; margin: 20px 0; }
+        .compare-btn { padding: 15px 30px; background: white; border: 2px dashed #667eea; border-radius: 12px; color: #667eea; font-size: 1rem; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+        .compare-btn:hover { background: #667eea; color: white; border: 2px solid #667eea; }
+        #loading { text-align: center; padding: 40px; color: white; }
+        #loading i { font-size: 48px; }
+        #loading p { margin-top: 10px; font-size: 1.2rem; }
+        footer { text-align: center; padding: 30px; color: white; margin-top: 40px; }
+        footer a { color: white; text-decoration: underline; }
+        .debug-box { background: #263238; color: #aed581; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; margin: 10px 0; max-height: 200px; overflow-y: auto; white-space: pre-wrap; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .trust-score { flex-direction: column; text-align: center; } .vis-header { flex-direction: column; gap: 10px; align-items: flex-start; } .legend { flex-wrap: wrap; } .input-box { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-spider"></i> Source Sleuth</div>
+            <div class="nav-links"><a href="#" class="active">Analyzer</a><a href="#">About</a><a href="#">API</a></div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="hero">
+            <h1>See the Truth in Every Article</h1>
+            <p>Paste any news URL and watch our interactive spider web map every claim to its source</p>
+        </div>
+        <div class="input-section">
+            <div class="input-box">
+                <input type="text" id="urlInput" placeholder="Paste article URL here..." />
+                <button onclick="analyzeArticle()"><i class="fas fa-search"></i> Analyze</button>
+            </div>
+            <div class="quick-links">
+                <span>Try one of our samples:</span>
+                <button onclick="loadSample(1)" class="sample-btn">Vaccine Misinfo</button>
+                <button onclick="loadSample(2)" class="sample-btn">Climate Hoax</button>
+                <button onclick="loadSample(3)" class="sample-btn">Election Fraud</button>
+            </div>
+        </div>
+        <div id="loading" style="display: none;"><i class="fas fa-spinner fa-spin"></i><p>Mapping sources...</p></div>
+        <div id="results" style="display: none;">
+            <div class="trust-score-container">
+                <div class="trust-score">
+                    <div class="score-circle" id="trustScoreDisplay"><span class="score-number">0</span><span class="score-label">/ 100</span></div>
+                    <div class="score-info"><h3>Article Trust Score</h3><p id="trustDescription">Analyzing...</p></div>
+                </div>
+            </div>
+            <div class="visualization-container">
+                <div class="vis-header">
+                    <h2><i class="fas fa-project-diagram"></i> Claim Source Map</h2>
+                    <div class="legend">
+                        <span><i class="fas fa-circle" style="color: #4CAF50;"></i> Verified</span>
+                        <span><i class="fas fa-circle" style="color: #FFC107;"></i> Weak</span>
+                        <span><i class="fas fa-circle" style="color: #F44336;"></i> Unsourced</span>
+                    </div>
+                </div>
+                <div id="visualization"><p style="color: #999;">Click a sample above to see the visualization</p></div>
+            </div>
+            <div class="claims-container">
+                <h2><i class="fas fa-list"></i> Claims Breakdown</h2>
+                <div id="claimsList"><p style="color: #999; text-align: center;">No claims loaded yet</p></div>
+            </div>
+            <div class="compare-container">
+                <button class="compare-btn" onclick="toggleCompare()"><i class="fas fa-code-branch"></i> Compare with Another Article</button>
+                <div id="compareSection" style="display: none;">
+                    <div class="input-box" style="margin-bottom: 20px;">
+                        <input type="text" id="compareUrlInput" placeholder="Paste second article URL..." />
+                        <button onclick="compareArticles()"><i class="fas fa-search"></i> Compare</button>
+                    </div>
+                    <div id="compareResults"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Debug Console -->
+        <div style="background: #1a1a2e; border-radius: 12px; padding: 15px; margin: 20px 0;">
+            <h4 style="color: #fff; margin-bottom: 10px;">🐛 Debug Console</h4>
+            <div id="debugOutput" class="debug-box">Waiting for actions...</div>
+        </div>
+    </div>
+    <footer><p>Made with <i class="fas fa-heart" style="color: #F44336;"></i> for UNESCO Youth Hackathon 2026</p></footer>
+    <script src="app.js"></script>
+</body>
+</html>
