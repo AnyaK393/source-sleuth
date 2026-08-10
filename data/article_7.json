@@ -1,0 +1,58 @@
+{
+    "title": "Climate Change Is Real - IPCC Report 2024 Confirms Human Impact",
+    "source": "IPCC.ch",
+    "url": "https://ipcc.ch/climate-report-2024",
+    "claims": [
+        {
+            "id": 1,
+            "text": "Global temperatures have risen 1.1°C since pre-industrial times.",
+            "source_status": "green",
+            "explanation": "True. NASA and IPCC data confirm this warming trend.",
+            "suggested_sources": [
+                "https://climate.nasa.gov/vital-signs/global-temperature/",
+                "https://www.ipcc.ch/report/ar6/wg1/"
+            ]
+        },
+        {
+            "id": 2,
+            "text": "Human activity is the primary driver of climate change.",
+            "source_status": "green",
+            "explanation": "True. 97% of climate scientists agree on this consensus.",
+            "suggested_sources": [
+                "https://climate.nasa.gov/scientific-consensus/",
+                "https://www.ipcc.ch/"
+            ]
+        },
+        {
+            "id": 3,
+            "text": "Renewable energy is now cheaper than fossil fuels in most countries.",
+            "source_status": "green",
+            "explanation": "True. Solar and wind are the cheapest energy sources globally.",
+            "suggested_sources": [
+                "https://www.iea.org/reports/world-energy-outlook-2023",
+                "https://ourworldindata.org/cheap-renewables-growth"
+            ]
+        },
+        {
+            "id": 4,
+            "text": "Sea levels are rising at an accelerating rate of 4mm per year.",
+            "source_status": "green",
+            "explanation": "True. NASA data confirms accelerating sea level rise.",
+            "suggested_sources": [
+                "https://climate.nasa.gov/vital-signs/sea-level/",
+                "https://www.ipcc.ch/report/ar6/wg1/"
+            ]
+        },
+        {
+            "id": 5,
+            "text": "Immediate action can still limit warming to 1.5°C.",
+            "source_status": "green",
+            "explanation": "True. The IPCC confirms this is still technically possible.",
+            "suggested_sources": [
+                "https://www.ipcc.ch/report/ar6/wg1/"
+            ]
+        }
+    ],
+    "trust_score": 82,
+    "trust_score_description": "High - All claims backed by IPCC and peer-reviewed research"
+}

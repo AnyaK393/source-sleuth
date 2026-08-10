@@ -1,0 +1,46 @@
+{
+    "title": "Miracle Cure: Essential Oils Can Replace All Medications",
+    "source": "NaturalHealingBlog.com",
+    "url": "https://naturalhealingblog.com/miracle-cure",
+    "claims": [
+        {
+            "id": 1,
+            "text": "Essential oils can cure cancer and other chronic diseases.",
+            "source_status": "red",
+            "explanation": "No scientific evidence supports essential oils as a cure for cancer. The FDA has not approved any essential oil as a cancer treatment.",
+            "suggested_sources": [
+                "https://www.cancer.gov/about-cancer/treatment/cam",
+                "https://www.fda.gov/consumers/consumer-updates/essential-oils"
+            ]
+        },
+        {
+            "id": 2,
+            "text": "Essential oils are completely safe and have no side effects.",
+            "source_status": "red",
+            "explanation": "False. Essential oils can cause allergic reactions, skin irritation, and interact with medications.",
+            "suggested_sources": [
+                "https://www.mayoclinic.org/healthy-lifestyle/consumer-health/expert-answers/essential-oils/faq-20058071"
+            ]
+        },
+        {
+            "id": 3,
+            "text": "Some essential oils have antimicrobial properties.",
+            "source_status": "green",
+            "explanation": "True. Some essential oils like tea tree oil have shown antimicrobial properties in laboratory studies.",
+            "suggested_sources": [
+                "https://pubmed.ncbi.nlm.nih.gov/27998232/"
+            ]
+        },
+        {
+            "id": 4,
+            "text": "The pharmaceutical industry suppresses natural remedies.",
+            "source_status": "red",
+            "explanation": "Conspiracy theory with no evidence. Many natural remedies have been studied and approved by regulatory agencies.",
+            "suggested_sources": [
+                "https://www.who.int/news-room/questions-answers/item/traditional-medicine"
+            ]
+        }
+    ],
+    "trust_score": 22,
+    "trust_score_description": "Very Low - Only 1 out of 4 claims has scientific backing"
+}

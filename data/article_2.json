@@ -1,57 +1,59 @@
 {
-  "title": "Climate Change is a Hoax - Scientists Debunk Global Warming",
-  "source": "ClimateDenial.org",
-  "url": "https://climatedenial.org/hoax",
-  "claims": [
-    {
-      "id": 1,
-      "text": "Global temperatures have not increased in the last 20 years.",
-      "source_status": "red",
-      "explanation": "NASA data shows 2023 was the hottest year on record. The last 10 years are the warmest in 125,000 years.",
-      "suggested_sources": [
-        "https://climate.nasa.gov/vital-signs/global-temperature/",
-        "https://www.ipcc.ch/report/ar6/wg1/"
-      ]
-    },
-    {
-      "id": 2,
-      "text": "CO2 levels are natural and have been much higher in Earth's history.",
-      "source_status": "yellow",
-      "explanation": "Partially true - CO2 has been higher, but NOT during human civilization. Current CO2 levels are the highest in 800,000 years.",
-      "suggested_sources": [
-        "https://climate.nasa.gov/vital-signs/carbon-dioxide/"
-      ]
-    },
-    {
-      "id": 3,
-      "text": "97% of climate scientists agree that human activity is causing climate change.",
-      "source_status": "green",
-      "explanation": "This is accurate - multiple peer-reviewed studies confirm the scientific consensus.",
-      "suggested_sources": [
-        "https://climate.nasa.gov/scientific-consensus/",
-        "https://www.ipcc.ch/"
-      ]
-    },
-    {
-      "id": 4,
-      "text": "Renewable energy costs more than fossil fuels and doesn't reduce emissions.",
-      "source_status": "red",
-      "explanation": "False. Solar and wind are now cheaper than coal in most countries. They significantly reduce emissions.",
-      "suggested_sources": [
-        "https://www.iea.org/reports/world-energy-outlook-2023",
-        "https://ourworldindata.org/cheap-renewables-growth"
-      ]
-    },
-    {
-      "id": 5,
-      "text": "Sea levels are rising at an accelerating rate due to ice melt.",
-      "source_status": "green",
-      "explanation": "Accurate. NASA data confirms sea levels have risen 4 inches since 1993 with accelerating rates.",
-      "suggested_sources": [
-        "https://climate.nasa.gov/vital-signs/sea-level/"
-      ]
-    }
-  ],
-  "trust_score": 40,
-  "trust_score_description": "Low - Only 2 out of 5 claims are properly sourced"
+    "title": "Scientists Reveal Climate Change Is a Political Hoax",
+    "source": "ClimateDenial.org",
+    "url": "https://climatedenial.org/climate-hoax",
+    "claims": [
+        {
+            "id": 1,
+            "text": "Global temperatures have not increased in the last 20 years.",
+            "source_status": "red",
+            "explanation": "False. NASA data shows the last decade was the hottest on record, with 2023 being the warmest year globally.",
+            "suggested_sources": [
+                "https://climate.nasa.gov/vital-signs/global-temperature/",
+                "https://www.ipcc.ch/report/ar6/wg1/"
+            ]
+        },
+        {
+            "id": 2,
+            "text": "CO2 levels are natural and have been much higher in Earth's history.",
+            "source_status": "yellow",
+            "explanation": "Partially true but misleading. While CO2 has been higher, current CO2 levels are the highest in 800,000 years.",
+            "suggested_sources": [
+                "https://climate.nasa.gov/vital-signs/carbon-dioxide/",
+                "https://www.ipcc.ch/report/ar6/wg1/"
+            ]
+        },
+        {
+            "id": 3,
+            "text": "97% of climate scientists agree that human activity causes climate change.",
+            "source_status": "green",
+            "explanation": "True. Multiple peer-reviewed studies confirm the scientific consensus.",
+            "suggested_sources": [
+                "https://climate.nasa.gov/scientific-consensus/",
+                "https://www.ipcc.ch/"
+            ]
+        },
+        {
+            "id": 4,
+            "text": "Renewable energy is more expensive and doesn't reduce emissions.",
+            "source_status": "red",
+            "explanation": "False. Solar and wind are now cheaper than coal in most countries and significantly reduce emissions.",
+            "suggested_sources": [
+                "https://www.iea.org/reports/world-energy-outlook-2023",
+                "https://ourworldindata.org/cheap-renewables-growth"
+            ]
+        },
+        {
+            "id": 5,
+            "text": "Sea levels are rising at an accelerating rate due to ice melt.",
+            "source_status": "green",
+            "explanation": "True. NASA data confirms sea levels have risen 4 inches since 1993 with accelerating rates.",
+            "suggested_sources": [
+                "https://climate.nasa.gov/vital-signs/sea-level/",
+                "https://www.ipcc.ch/report/ar6/wg1/"
+            ]
+        }
+    ],
+    "trust_score": 40,
+    "trust_score_description": "Low - Only 2 out of 5 claims are properly sourced"
 }

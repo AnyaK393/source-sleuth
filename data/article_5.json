@@ -1,0 +1,46 @@
+{
+    "title": "5G Technology Is Secretly Controlling Our Brains",
+    "source": "TechConspiracy.net",
+    "url": "https://techconspiracy.net/5g-brain-control",
+    "claims": [
+        {
+            "id": 1,
+            "text": "5G radiation causes DNA damage and increases cancer risk.",
+            "source_status": "red",
+            "explanation": "The World Health Organization states that no adverse health effects have been proven from 5G exposure within international guidelines.",
+            "suggested_sources": [
+                "https://www.who.int/news-room/questions-answers/item/5g-networks",
+                "https://www.fda.gov/radiation-emitting-products/cell-phones"
+            ]
+        },
+        {
+            "id": 2,
+            "text": "5G technology was created to control the population through electromagnetic waves.",
+            "source_status": "red",
+            "explanation": "Conspiracy theory with zero scientific evidence. 5G is a telecommunications standard, not a mind control device.",
+            "suggested_sources": [
+                "https://www.icnirp.org/en/activities/news/news-article/5g.html"
+            ]
+        },
+        {
+            "id": 3,
+            "text": "5G signals are non-ionizing radiation, similar to visible light.",
+            "source_status": "green",
+            "explanation": "True. 5G uses non-ionizing radio frequencies similar to Wi-Fi and visible light.",
+            "suggested_sources": [
+                "https://www.cancer.gov/about-cancer/causes-prevention/risk/radiation/electromagnetic-fields-fact-sheet"
+            ]
+        },
+        {
+            "id": 4,
+            "text": "International guidelines limit 5G exposure to safe levels.",
+            "source_status": "green",
+            "explanation": "True. ICANIRP and WHO have established guidelines that countries follow to ensure safe 5G deployment.",
+            "suggested_sources": [
+                "https://www.icnirp.org/en/frequencies/high-frequencies/5g/index.html"
+            ]
+        }
+    ],
+    "trust_score": 30,
+    "trust_score_description": "Low - Only 2 out of 4 claims are factually accurate"
+}

@@ -1,58 +1,59 @@
 {
-  "title": "Study Shows Vaccines Cause Autism",
-  "source": "FakeNews.com",
-  "url": "https://fakenews.com/vaccines-autism",
-  "claims": [
-    {
-      "id": 1,
-      "text": "Vaccines contain harmful toxins that cause autism in children.",
-      "source_status": "red",
-      "explanation": "No credible study has ever shown a link between vaccines and autism. The original study was retracted and debunked.",
-      "suggested_sources": [
-        "https://www.cdc.gov/vaccinesafety/concerns/autism.html",
-        "https://www.who.int/news-room/questions-answers/item/vaccines-and-immunization",
-        "https://pubmed.ncbi.nlm.nih.gov/27386313/"
-      ]
-    },
-    {
-      "id": 2,
-      "text": "Thimerosal, a preservative in vaccines, is the cause of rising autism rates.",
-      "source_status": "red",
-      "explanation": "Thimerosal was removed from childhood vaccines in 2001, yet autism rates continued to rise - disproving the link.",
-      "suggested_sources": [
-        "https://www.fda.gov/vaccines-blood-biologics/safety-availability/thimerosal-and-vaccines",
-        "https://pubmed.ncbi.nlm.nih.gov/21705274/"
-      ]
-    },
-    {
-      "id": 3,
-      "text": "A 1998 study by Dr. Andrew Wakefield confirmed the vaccine-autism link.",
-      "source_status": "red",
-      "explanation": "Wakefield's study was retracted by The Lancet in 2010. He lost his medical license for falsifying data.",
-      "suggested_sources": [
-        "https://www.bmj.com/content/342/bmj.c7452",
-        "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(11)60115-1/fulltext"
-      ]
-    },
-    {
-      "id": 4,
-      "text": "The CDC conducted a study on 95,000 children and found no link between vaccines and autism.",
-      "source_status": "green",
-      "explanation": "This is accurate - the CDC published a large-scale study in 2013 confirming no link.",
-      "suggested_sources": [
-        "https://pubmed.ncbi.nlm.nih.gov/23545349/"
-      ]
-    },
-    {
-      "id": 5,
-      "text": "Parents are reporting that their children developed autism symptoms immediately after vaccination.",
-      "source_status": "yellow",
-      "explanation": "Anecdotal reports exist but are not scientific evidence. These are coincidental timing events, not causal.",
-      "suggested_sources": [
-        "https://www.cdc.gov/vaccinesafety/concerns/autism-case-studies.html"
-      ]
-    }
-  ],
-  "trust_score": 28,
-  "trust_score_description": "Very Low - Only 1 out of 5 claims has credible sources"
+    "title": "New Study Claims COVID Vaccine Causes Widespread Heart Problems",
+    "source": "FakeHealthNews.com",
+    "url": "https://fakenews.com/vaccine-heart-problems",
+    "claims": [
+        {
+            "id": 1,
+            "text": "The COVID-19 vaccine causes myocarditis in 1 in 1000 young people.",
+            "source_status": "red",
+            "explanation": "This claim is false. The actual rate of myocarditis after vaccination is extremely rare (approximately 1 in 50,000) and usually mild.",
+            "suggested_sources": [
+                "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety/myocarditis.html",
+                "https://www.who.int/news-room/questions-answers/item/coronavirus-disease-(covid-19)-vaccines-safety"
+            ]
+        },
+        {
+            "id": 2,
+            "text": "Thousands of people have died from COVID-19 vaccine side effects.",
+            "source_status": "red",
+            "explanation": "False. All vaccine-related deaths are thoroughly investigated, and no causal link has been found in the vast majority of cases.",
+            "suggested_sources": [
+                "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety/adverse-events.html",
+                "https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines"
+            ]
+        },
+        {
+            "id": 3,
+            "text": "Vaccines don't prevent transmission of the virus.",
+            "source_status": "yellow",
+            "explanation": "Partially true. Vaccines reduce transmission significantly but don't completely eliminate it.",
+            "suggested_sources": [
+                "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/effectiveness.html",
+                "https://www.who.int/news-room/questions-answers/item/coronavirus-disease-(covid-19)-vaccines"
+            ]
+        },
+        {
+            "id": 4,
+            "text": "The vaccines were developed too quickly and weren't properly tested.",
+            "source_status": "red",
+            "explanation": "False. The vaccines underwent rigorous clinical trials and safety reviews. The speed was due to unprecedented global cooperation and funding.",
+            "suggested_sources": [
+                "https://www.fda.gov/vaccines-blood-biologics/development-process",
+                "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/distributing/steps-ensure-safety.html"
+            ]
+        },
+        {
+            "id": 5,
+            "text": "mRNA vaccines have been studied for over a decade before COVID-19.",
+            "source_status": "green",
+            "explanation": "True. mRNA technology has been researched for over 20 years, including for cancer and other diseases.",
+            "suggested_sources": [
+                "https://www.nature.com/articles/d41586-021-02483-6",
+                "https://www.nih.gov/news-events/nih-research-matters/history-mrna-vaccines"
+            ]
+        }
+    ],
+    "trust_score": 28,
+    "trust_score_description": "Very Low - Only 1 out of 5 claims has credible scientific backing"
 }

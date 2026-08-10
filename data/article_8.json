@@ -1,0 +1,55 @@
+{
+    "title": "2024 Election Was Secure and Fair - Bipartisan Officials Confirm",
+    "source": "ElectionSecurity.gov",
+    "url": "https://electionsecurity.gov/2024-results",
+    "claims": [
+        {
+            "id": 1,
+            "text": "Election security experts have confirmed no widespread fraud.",
+            "source_status": "green",
+            "explanation": "True. Multiple audits and reviews found no evidence of widespread fraud.",
+            "suggested_sources": [
+                "https://www.brennancenter.org/our-work/research-reports/debunking-voter-fraud-myth",
+                "https://www.cisa.gov/news-events/news/fact-check-election-security"
+            ]
+        },
+        {
+            "id": 2,
+            "text": "Voter fraud is extremely rare at 0.0001% of votes cast.",
+            "source_status": "green",
+            "explanation": "True. Studies show voter fraud is statistically insignificant.",
+            "suggested_sources": [
+                "https://www.brennancenter.org/our-work/research-reports/debunking-voter-fraud-myth"
+            ]
+        },
+        {
+            "id": 3,
+            "text": "Election officials from both parties certified all results.",
+            "source_status": "green",
+            "explanation": "True. Bipartisan certification occurred in all 50 states.",
+            "suggested_sources": [
+                "https://www.congress.gov/2024-election-certification"
+            ]
+        },
+        {
+            "id": 4,
+            "text": "Voting machines are tested and audited before every election.",
+            "source_status": "green",
+            "explanation": "True. Regular testing and audits ensure machine accuracy.",
+            "suggested_sources": [
+                "https://www.cisa.gov/news-events/news/fact-check-election-security"
+            ]
+        },
+        {
+            "id": 5,
+            "text": "Voter ID laws are not necessary to prevent fraud - it's already rare.",
+            "source_status": "green",
+            "explanation": "True. Fraud rates remain low regardless of voter ID laws.",
+            "suggested_sources": [
+                "https://www.brennancenter.org/our-work/analysis-opinion/voter-id-laws-what-we-know"
+            ]
+        }
+    ],
+    "trust_score": 75,
+    "trust_score_description": "High - All claims backed by official election security sources"
+}

@@ -1,0 +1,58 @@
+{
+    "title": "COVID-19 Vaccines Are Safe and Effective - CDC Confirms",
+    "source": "CDC.gov",
+    "url": "https://cdc.gov/covid-vaccines-safety",
+    "claims": [
+        {
+            "id": 1,
+            "text": "COVID-19 vaccines have been tested in rigorous clinical trials with over 40,000 participants.",
+            "source_status": "green",
+            "explanation": "True. Pfizer and Moderna both conducted Phase 3 trials with 40,000+ participants.",
+            "suggested_sources": [
+                "https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines",
+                "https://www.nejm.org/doi/full/10.1056/NEJMoa2034577"
+            ]
+        },
+        {
+            "id": 2,
+            "text": "The CDC and WHO recommend COVID-19 vaccination for all eligible individuals.",
+            "source_status": "green",
+            "explanation": "True. Both organizations strongly recommend vaccination.",
+            "suggested_sources": [
+                "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations.html",
+                "https://www.who.int/news-room/questions-answers/item/coronavirus-disease-(covid-19)-vaccines"
+            ]
+        },
+        {
+            "id": 3,
+            "text": "Myocarditis after vaccination is extremely rare and usually mild.",
+            "source_status": "green",
+            "explanation": "True. Cases of myocarditis are rare (1 in 50,000) and most recover quickly.",
+            "suggested_sources": [
+                "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety/myocarditis.html"
+            ]
+        },
+        {
+            "id": 4,
+            "text": "Vaccines significantly reduce transmission and severe disease.",
+            "source_status": "green",
+            "explanation": "True. Vaccines reduce transmission by 60-80% and severe disease by 90%+.",
+            "suggested_sources": [
+                "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/effectiveness.html",
+                "https://www.who.int/news-room/questions-answers/item/coronavirus-disease-(covid-19)-vaccines"
+            ]
+        },
+        {
+            "id": 5,
+            "text": "Over 13 billion vaccine doses have been administered globally with excellent safety records.",
+            "source_status": "green",
+            "explanation": "True. Vaccine safety monitoring continues globally.",
+            "suggested_sources": [
+                "https://www.who.int/news-room/questions-answers/item/coronavirus-disease-(covid-19)-vaccines-safety",
+                "https://ourworldindata.org/covid-vaccinations"
+            ]
+        }
+    ],
+    "trust_score": 78,
+    "trust_score_description": "High - All claims are backed by credible scientific sources"
+}
