@@ -1,6 +1,6 @@
 // ============================================================
 // SOURCE SLEUTH - COMPLETE APPLICATION
-// Features: URL/Text Analysis, Compare, History, Export PDF
+// Features: URL/Text Analysis, Compare, History, Fact-Checking
 // ============================================================
 
 // ----- STATE -----
@@ -55,7 +55,7 @@ function switchTab(tab) {
     document.getElementById('textInputContainer').style.display = tab === 'text' ? 'block' : 'none';
 }
 
-// ----- EXAMPLE URLs (Subtle) -----
+// ----- EXAMPLE URLs -----
 const exampleUrls = {
     1: "https://fakenews.com/vaccine-heart-problems",
     2: "https://climatedenial.org/climate-hoax",
@@ -104,7 +104,6 @@ async function performAnalysis(payload) {
     loading.style.display = 'block';
     results.style.display = 'none';
 
-    // Update loading text
     document.getElementById('loadingText').textContent = 'analyzing content...';
 
     try {
@@ -139,19 +138,16 @@ function displayResults(data) {
 
     document.getElementById('results').style.display = 'block';
 
-    // Trust Score
     const score = data.trust_score || 0;
     animateNumber('scoreNumber', 0, score);
     document.getElementById('resultTitle').textContent = data.title || 'Article Analysis';
     document.getElementById('trustDescription').textContent =
         data.trust_score_description || 'Analysis complete';
 
-    // Confidence
     const confidence = data._confidence || 85;
     document.getElementById('confidenceText').textContent = `${confidence}% confidence`;
     document.getElementById('confidenceDisplay').style.display = 'inline-block';
 
-    // Score color
     const circle = document.querySelector('.score-circle');
     if (score < 30) {
         circle.style.background = 'linear-gradient(135deg, #fd79a8, #e17055)';
@@ -161,7 +157,6 @@ function displayResults(data) {
         circle.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
     }
 
-    // Stats
     const claims = data.claims || [];
     const verified = claims.filter(c => c.source_status === 'green').length;
     const weak = claims.filter(c => c.source_status === 'yellow').length;
@@ -172,7 +167,6 @@ function displayResults(data) {
     document.getElementById('detailUnsourced').textContent = unsourced;
     document.getElementById('detailTotal').textContent = claims.length;
 
-    // Generate
     generateVisualization(data);
     generateClaimsList(data);
     debugLog(`✅ Display complete: ${claims.length} claims`);
@@ -307,7 +301,10 @@ function generateVisualization(data) {
     }
 }
 
-// ----- CLAIMS LIST -----
+// ============================================================
+// 📋 GENERATE CLAIMS LIST (WITH FACT-CHECKING)
+// ============================================================
+
 function generateClaimsList(data) {
     const container = document.getElementById('claimsList');
     container.innerHTML = '';
@@ -342,13 +339,42 @@ function generateClaimsList(data) {
             `;
         }
 
+        let factCheckHtml = '';
+        if (claim.fact_checked && claim.fact_check_results && claim.fact_check_results.length > 0) {
+            factCheckHtml = `
+                <div style="margin-top:10px;padding:10px 14px;background:rgba(102,126,234,0.08);border-radius:8px;border-left:3px solid #667eea;">
+                    <div style="font-size:0.7rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">
+                        <i class="fas fa-check-circle" style="color:#00b894;"></i> 
+                        Fact-Checked via Google (${claim.fact_check_results.length} sources found)
+                    </div>
+                    ${claim.fact_check_results.map((result, idx) => `
+                        <div style="font-size:0.75rem;color:var(--text-secondary);padding:6px 0;${idx > 0 ? 'border-top:1px solid var(--border-color);margin-top:4px;' : ''}">
+                            <div style="color:var(--text-primary);font-weight:500;font-size:0.7rem;">
+                                <i class="fas fa-quote-left" style="color:var(--text-muted);font-size:0.6rem;"></i> 
+                                ${result.text || 'No text available'}
+                            </div>
+                            <div style="margin-top:2px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:0.65rem;color:var(--text-muted);">
+                                <span><strong>Publisher:</strong> ${result.publisher || 'Unknown'}</span>
+                                <span><strong>Rating:</strong> ${result.review_text || 'No rating'}</span>
+                                ${result.review_url ? `<a href="${result.review_url}" target="_blank" style="color:#667eea;text-decoration:none;">
+                                    <i class="fas fa-external-link-alt"></i> View Source
+                                </a>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
         div.innerHTML = `
             <div class="claim-text">${claim.text}</div>
             <div class="claim-meta">
                 <span class="badge ${statusClass}">${statusText}</span>
                 <span>${claim.explanation || ''}</span>
+                ${claim.fact_checked ? '<span style="font-size:0.65rem;color:#00b894;background:rgba(0,184,148,0.1);padding:2px 10px;border-radius:10px;">🔍 Fact-Checked</span>' : ''}
             </div>
             ${sourcesHtml}
+            ${factCheckHtml}
             <button class="expand-btn" onclick="toggleSources(${index})">
                 ${claim.suggested_sources && claim.suggested_sources.length > 0 ? '📖 Show Sources' : ''}
             </button>
@@ -356,6 +382,8 @@ function generateClaimsList(data) {
 
         container.appendChild(div);
     });
+
+    debugLog(`📋 Generated ${claims.length} claims with fact-checking`);
 }
 
 // ----- FILTER -----
@@ -428,8 +456,6 @@ function renderHistory() {
 function loadHistoryItem(id) {
     const item = analysisHistory.find(h => h.id === id);
     if (item) {
-        // In a real app, you'd fetch the full data again
-        // For demo, we'll just show an alert
         alert(`📊 ${item.title}\nTrust Score: ${item.trust_score}/100\nAnalyzed: ${new Date(item.timestamp).toLocaleString()}`);
     }
 }
@@ -540,7 +566,6 @@ function downloadPNG() {
     img.src = url;
 }
 
-// ----- EXPORT PDF -----
 function exportPDF() {
     if (!currentData) {
         alert('No data to export. Analyze an article first!');
@@ -583,7 +608,6 @@ UNESCO Youth Hackathon 2026
 ========================================
     `;
 
-    // Create a text file download
     const blob = new Blob([report], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -614,147 +638,3 @@ debugLog('🔍 Source Sleuth loaded successfully!');
 debugLog('💡 Enter a URL or paste text, then press Ctrl+Enter');
 debugLog('📡 Backend: http://localhost:5000');
 debugLog('📚 History: ' + analysisHistory.length + ' saved analyses');
-
-// ----- COMPARE ARTICLES (Enhanced) -----
-async function compareArticles() {
-    const url = document.getElementById('compareUrlInput').value.trim();
-    if (!url) {
-        alert('Please paste a second article URL.');
-        return;
-    }
-
-    try {
-        const response = await fetch('http://localhost:5000/api/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url })
-        });
-
-        const result = await response.json();
-
-        if (result.success && currentData) {
-            secondData = result.data;
-            const container = document.getElementById('compareResults');
-
-            const s1 = currentData.trust_score || 0;
-            const s2 = result.data.trust_score || 0;
-            const diff = Math.abs(s1 - s2);
-            const diffPercent = Math.round((diff / 100) * 100);
-
-            // Determine color for each score
-            const color1 = s1 < 30 ? '#e17055' : s1 < 60 ? '#fdcb6e' : '#00b894';
-            const color2 = s2 < 30 ? '#e17055' : s2 < 60 ? '#fdcb6e' : '#00b894';
-
-            // Determine winner message
-            let winnerMessage = '';
-            let winnerEmoji = '';
-            if (s1 > s2 + 20) {
-                winnerMessage = '🏆 Article 1 is significantly more credible';
-                winnerEmoji = '📈';
-            } else if (s2 > s1 + 20) {
-                winnerMessage = '🏆 Article 2 is significantly more credible';
-                winnerEmoji = '📈';
-            } else if (Math.abs(s1 - s2) <= 10) {
-                winnerMessage = '⚖️ Both articles have similar credibility';
-                winnerEmoji = '🤝';
-            } else {
-                winnerMessage = '📊 Article 1 is slightly more credible than Article 2';
-                winnerEmoji = '📊';
-            }
-
-            container.innerHTML = `
-                <div style="margin-top:20px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);border:1px solid var(--border-color);">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                        <h4 style="color:var(--text-secondary);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;">
-                            <i class="fas fa-code-branch"></i> Comparison Results
-                        </h4>
-                        <span style="font-size:0.7rem;color:var(--text-muted);background:var(--bg-card);padding:2px 12px;border-radius:12px;">
-                            ${diffPercent}% difference
-                        </span>
-                    </div>
-
-                    <div class="compare-grid">
-                        <div class="compare-card" style="text-align:center;">
-                            <div style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">
-                                ${currentData.source || 'Unknown Source'}
-                            </div>
-                            <h4 style="font-size:0.85rem;color:var(--text-primary);margin-bottom:4px;">
-                                ${currentData.title || 'Article 1'}
-                            </h4>
-                            <div class="compare-score" style="color:${color1};font-size:3.5rem;font-weight:900;">
-                                ${s1}
-                            </div>
-                            <p style="color:var(--text-muted);font-size:0.75rem;">Trust Score</p>
-                            <div style="margin-top:8px;display:flex;justify-content:center;gap:12px;font-size:0.7rem;color:var(--text-muted);">
-                                <span>✅ ${currentData.claims ? currentData.claims.filter(c => c.source_status === 'green').length : 0}</span>
-                                <span>⚠️ ${currentData.claims ? currentData.claims.filter(c => c.source_status === 'yellow').length : 0}</span>
-                                <span>❌ ${currentData.claims ? currentData.claims.filter(c => c.source_status === 'red').length : 0}</span>
-                            </div>
-                            <div style="margin-top:6px;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
-                                <div style="height:100%;width:${s1}%;background:${color1};border-radius:4px;transition:width 1s;"></div>
-                            </div>
-                        </div>
-
-                        <div class="compare-vs" style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-                            <span style="font-size:2rem;font-weight:900;color:#667eea;">VS</span>
-                            <span style="font-size:0.65rem;color:var(--text-muted);text-align:center;line-height:1.3;">
-                                ${diff > 20 ? '⬆️ Significant<br>difference' : '📊 Similar<br>scores'}
-                            </span>
-                        </div>
-
-                        <div class="compare-card" style="text-align:center;">
-                            <div style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">
-                                ${result.data.source || 'Unknown Source'}
-                            </div>
-                            <h4 style="font-size:0.85rem;color:var(--text-primary);margin-bottom:4px;">
-                                ${result.data.title || 'Article 2'}
-                            </h4>
-                            <div class="compare-score" style="color:${color2};font-size:3.5rem;font-weight:900;">
-                                ${s2}
-                            </div>
-                            <p style="color:var(--text-muted);font-size:0.75rem;">Trust Score</p>
-                            <div style="margin-top:8px;display:flex;justify-content:center;gap:12px;font-size:0.7rem;color:var(--text-muted);">
-                                <span>✅ ${result.data.claims ? result.data.claims.filter(c => c.source_status === 'green').length : 0}</span>
-                                <span>⚠️ ${result.data.claims ? result.data.claims.filter(c => c.source_status === 'yellow').length : 0}</span>
-                                <span>❌ ${result.data.claims ? result.data.claims.filter(c => c.source_status === 'red').length : 0}</span>
-                            </div>
-                            <div style="margin-top:6px;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
-                                <div style="height:100%;width:${s2}%;background:${color2};border-radius:4px;transition:width 1s;"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top:16px;padding:14px 18px;border-radius:var(--radius-sm);background:${diff > 20 ? 'rgba(225,112,85,0.1)' : 'rgba(0,184,148,0.1)'};border:1px solid ${diff > 20 ? 'rgba(225,112,85,0.2)' : 'rgba(0,184,148,0.2)'};">
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">${winnerEmoji}</span>
-                            <span style="font-weight:600;color:var(--text-primary);">${winnerMessage}</span>
-                        </div>
-                        ${diff > 20 ? `
-                            <div style="margin-top:6px;font-size:0.8rem;color:var(--text-muted);">
-                                ⚠️ The ${diff > 30 ? 'large' : 'moderate'} difference of ${diff} points suggests these articles have very different credibility levels.
-                            </div>
-                        ` : `
-                            <div style="margin-top:6px;font-size:0.8rem;color:var(--text-muted);">
-                                ${diff <= 5 ? '📊 Scores are almost identical. Both articles have similar reliability.' : '📊 Scores are within a reasonable range. Both articles have comparable credibility.'}
-                            </div>
-                        `}
-                    </div>
-
-                    <div style="margin-top:12px;display:flex;gap:12px;font-size:0.7rem;color:var(--text-muted);flex-wrap:wrap;">
-                        <span>📅 Compared: ${new Date().toLocaleString()}</span>
-                        <span>📊 Difference: ${diff} points</span>
-                        <span>📈 ${s1 > s2 ? 'Article 1' : 'Article 2'} leads by ${diff} points</span>
-                    </div>
-                </div>
-            `;
-
-            // Scroll to comparison results
-            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-            debugLog(`📊 Comparison complete: ${s1} vs ${s2}, diff: ${diff}`);
-        }
-    } catch (error) {
-        debugLog(`❌ Compare error: ${error.message}`);
-        alert('Error comparing articles. Make sure the backend is running.');
-    }
-}
