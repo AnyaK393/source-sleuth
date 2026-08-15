@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Source Sleuth - Visual Citation Mapping</title>
 
+    <!-- D3.js -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
 
     <style>
-        /* ===== CSS Variables ===== */
+        /* ============================================
+                   SOURCE SLEUTH - COMPLETE CSS
+                   ============================================ */
+
+        /* ----- CSS Variables ----- */
         :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
@@ -82,7 +91,7 @@
             z-index: 0;
         }
 
-        /* ===== Navbar ===== */
+        /* ----- Navbar ----- */
         .navbar {
             position: sticky;
             top: 0;
@@ -99,6 +108,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .logo {
@@ -144,7 +155,25 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .language-select {
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .language-select:hover {
+            border-color: #667eea;
         }
 
         .nav-badge {
@@ -180,7 +209,7 @@
             transform: rotate(20deg);
         }
 
-        /* ===== Container ===== */
+        /* ----- Container ----- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -189,7 +218,7 @@
             z-index: 1;
         }
 
-        /* ===== Hero ===== */
+        /* ----- Hero ----- */
         .hero {
             text-align: center;
             padding: 40px 20px 30px;
@@ -280,7 +309,7 @@
             background: #e17055;
         }
 
-        /* ===== Input Section ===== */
+        /* ----- Input Section ----- */
         .input-section {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -388,65 +417,39 @@
             transform: scale(0.97);
         }
 
-        /* ===== Example URLs (Subtle) ===== */
-        .example-urls {
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .example-urls-label {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .example-url {
-            font-size: 0.7rem;
-            color: var(--text-muted);
+        .btn-voice {
+            padding: 16px 20px;
             background: var(--bg-input);
-            padding: 4px 14px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
             cursor: pointer;
             transition: var(--transition);
-            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .example-url:hover {
+        .btn-voice:hover {
             border-color: #667eea;
             color: #667eea;
             background: rgba(102, 126, 234, 0.08);
         }
 
-        .example-url .badge-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            margin-right: 6px;
+        .btn-voice.listening {
+            border-color: #e17055;
+            color: #e17055;
+            animation: pulse 1s infinite;
         }
 
-        .badge-dot.red {
-            background: #e17055;
-        }
-        .badge-dot.yellow {
-            background: #fdcb6e;
-        }
-        .badge-dot.green {
-            background: #00b894;
-        }
-        .badge-dot.purple {
-            background: #667eea;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(225, 112, 85, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(225, 112, 85, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(225, 112, 85, 0); }
         }
 
-        /* ===== Loading ===== */
+        /* ----- Loading ----- */
         #loading {
             text-align: center;
             padding: 50px 20px;
@@ -474,7 +477,7 @@
             font-weight: 500;
         }
 
-        /* ===== Results ===== */
+        /* ----- Results ----- */
         #results {
             display: none;
             animation: fadeUp 0.6s ease;
@@ -491,7 +494,7 @@
             }
         }
 
-        /* ===== Trust Score ===== */
+        /* ----- Trust Score ----- */
         .trust-score-container {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -598,7 +601,7 @@
             margin-left: 8px;
         }
 
-        /* ===== Visualization ===== */
+        /* ----- Visualization ----- */
         .visualization-container {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -686,7 +689,7 @@
             opacity: 0.3;
         }
 
-        /* ===== Claims ===== */
+        /* ----- Claims ----- */
         .claims-container {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -854,7 +857,7 @@
             border-color: transparent;
         }
 
-        /* ===== Compare ===== */
+        /* ----- Compare ----- */
         .compare-container {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -933,7 +936,7 @@
             font-weight: 500;
         }
 
-        /* ===== Share ===== */
+        /* ----- Share ----- */
         .share-container {
             display: flex;
             gap: 12px;
@@ -978,7 +981,7 @@
             color: white;
         }
 
-        /* ===== History ===== */
+        /* ----- History ----- */
         .history-container {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -1038,7 +1041,7 @@
             color: #e17055;
         }
 
-        /* ===== Debug ===== */
+        /* ----- Debug ----- */
         .debug-container {
             background: #0a0a12;
             border-radius: var(--radius);
@@ -1070,7 +1073,7 @@
             opacity: 0.6;
         }
 
-        /* ===== Footer ===== */
+        /* ----- Footer ----- */
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -1089,7 +1092,7 @@
             text-decoration: underline;
         }
 
-        /* ===== Responsive ===== */
+        /* ----- Responsive ----- */
         @media (max-width: 1024px) {
             .hero h1 {
                 font-size: 2.8rem;
@@ -1120,6 +1123,10 @@
             .btn-primary {
                 justify-content: center;
                 width: 100%;
+            }
+            .btn-voice {
+                width: 100%;
+                justify-content: center;
             }
             .compare-grid {
                 grid-template-columns: 1fr;
@@ -1157,12 +1164,12 @@
                 font-size: 0.75rem;
                 padding: 8px 12px;
             }
-            .example-urls {
-                flex-direction: column;
-                align-items: flex-start;
+            .nav-actions {
+                gap: 8px;
             }
-            .example-url {
+            .language-select {
                 font-size: 0.65rem;
+                padding: 4px 8px;
             }
         }
 
@@ -1191,6 +1198,7 @@
 </head>
 <body>
 
+    <!-- Background Glows -->
     <div class="bg-glow"></div>
     <div class="bg-glow-2"></div>
 
@@ -1205,6 +1213,13 @@
                 </div>
             </a>
             <div class="nav-actions">
+                <select id="languageSelect" class="language-select" onchange="setLanguage(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="hi">🇮🇳 हिन्दी</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="ar">🇦🇪 العربية</option>
+                </select>
                 <span class="nav-badge"><i class="fas fa-trophy"></i> UNESCO 2026</span>
                 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
                     <i class="fas fa-moon" id="themeIcon"></i>
@@ -1244,6 +1259,9 @@
             <div id="urlInputContainer">
                 <div class="input-box">
                     <input type="text" id="urlInput" placeholder="https://example.com/article" value="" autocomplete="off" />
+                    <button class="btn-voice" onclick="startVoiceInput()" title="Voice Input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
                     <button class="btn-primary" onclick="analyzeArticle()">
                         <i class="fas fa-search"></i> Analyze
                     </button>
@@ -1259,27 +1277,9 @@
                 </div>
             </div>
 
-            <!-- Example URLs (Subtle - Not Sample Cards) -->
-            <div class="example-urls">
-                <span class="example-urls-label"><i class="fas fa-lightbulb"></i> Try these examples:</span>
-                <span class="example-url" onclick="loadExample(1)">
-                    <span class="badge-dot red"></span> Vaccine safety
-                </span>
-                <span class="example-url" onclick="loadExample(2)">
-                    <span class="badge-dot yellow"></span> Climate hoax
-                </span>
-                <span class="example-url" onclick="loadExample(3)">
-                    <span class="badge-dot green"></span> Election fraud
-                </span>
-                <span class="example-url" onclick="loadExample(4)">
-                    <span class="badge-dot red"></span> Essential oils
-                </span>
-                <span class="example-url" onclick="loadExample(5)">
-                    <span class="badge-dot purple"></span> 5G conspiracy
-                </span>
-                <span style="font-size:0.65rem;color:var(--text-muted);margin-left:auto;">
-                    <i class="fas fa-keyboard"></i> Ctrl+Enter
-                </span>
+            <!-- Keyboard Shortcut Hint -->
+            <div style="margin-top:12px;text-align:right;font-size:0.65rem;color:var(--text-muted);">
+                <i class="fas fa-keyboard"></i> Press Ctrl+Enter to analyze
             </div>
         </div>
 
@@ -1368,7 +1368,7 @@
                 </div>
             </div>
 
-            <!-- Share & Export -->
+            <!-- Share -->
             <div class="compare-container" style="border:1px solid var(--border-color);">
                 <h4 style="margin-bottom:12px;font-weight:600;color:var(--text-secondary);">
                     <i class="fas fa-share-alt"></i> Share & Export
