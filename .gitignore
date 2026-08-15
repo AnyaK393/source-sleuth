@@ -60,4 +60,7 @@ coverage/
 # Build
 dist/
 build/
-out/
+out/*.mov
+*.mp4
+*.pptx
+*.ppt
