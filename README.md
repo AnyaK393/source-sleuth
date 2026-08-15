@@ -58,53 +58,15 @@ Source Sleuth makes media literacy **visual, interactive, and accessible** to ev
 
 ## 🏗️ System Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         PRESENTATION LAYER (Frontend)                       │
-│                                                                             │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
-│  │   User       │  │   D3.js      │  │   Web        │  │   i18n       │  │
-│  │   Interface  │  │  Visuali-    │  │   Speech     │  │   Multi-     │  │
-│  │   (HTML/CSS) │  │   zation     │  │   API        │  │   Language   │  │
-│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  │
-│                                                                             │
-│  Functions: User Input → Display Results → Interactive Visualization       │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         APPLICATION LAYER (Backend)                         │
-│                                                                             │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │                        REST API Gateway                               │  │
-│  │              (Flask - Python 3.13)                                    │  │
-│  │                                                                       │  │
-│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌───────────┐  │  │
-│  │  │  Smart      │  │   Claim     │  │  Fact-      │  │  Response │  │  │
-│  │  │  Detection  │→ │  Extraction │→ │  Check      │→ │  Formatter│  │  │
-│  │  │  Engine     │  │  Engine     │  │  Engine     │  │           │  │  │
-│  │  └─────────────┘  └─────────────┘  └─────────────┘  └───────────┘  │  │
-│  │                                                                       │  │
-│  │  • Smart Detection: Keyword-based topic identification               │  │
-│  │  • Claim Extraction: Natural Language Processing                     │  │
-│  │  • Fact-Check: Google Fact Check API Integration                    │  │
-│  │  • Response Formatter: JSON response generation                     │  │
-│  └──────────────────────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         DATA & SERVICES LAYER                               │
-│                                                                             │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
-│  │  Article     │  │  Source      │  │  Trust       │  │  Google      │  │
-│  │  Database    │  │  Repository  │  │  Score       │  │  Fact Check  │  │
-│  │              │  │              │  │  Calculator  │  │  API         │  │
-│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+### Component Overview
 
----
+| Layer | Components | Technologies |
+|-------|------------|--------------|
+| **Presentation Layer** | User Interface, D3.js Visualization, Web Speech API, i18n Multi-Language | HTML5, CSS3, JavaScript, D3.js |
+| **Application Layer** | REST API Gateway, Smart Detection Engine, Claim Extraction Engine, Fact-Check Engine, Response Formatter | Python, Flask 3.1.0 |
+| **Data & Services Layer** | Article Database, Source Repository, Trust Score Calculator, Google Fact Check API | JSON, REST APIs |
+| **External Services** | Google Fact Check API, Web Speech API, Browser Local Storage, Browser Rendering Engine | Google Cloud, Web APIs |
+
 
 ## 🛠️ Technology Stack
 
@@ -119,30 +81,27 @@ Source Sleuth makes media literacy **visual, interactive, and accessible** to ev
 
 ## 📁 Project Structure
 
-```
 source-sleuth/
 │
 ├── backend/
-│   ├── app.py              # Flask API server
-│   └── requirements.txt    # Python dependencies
+│ ├── app.py # Flask API server
+│ └── requirements.txt # Python dependencies
 │
 ├── data/
-│   ├── article_1.json      # Vaccine Misinformation (28/100)
-│   ├── article_2.json      # Climate Hoax (40/100)
-│   ├── article_3.json      # Election Fraud (35/100)
-│   ├── article_4.json      # Essential Oils (22/100)
-│   ├── article_5.json      # 5G Conspiracy (30/100)
-│   ├── article_6.json      # Vaccine Facts (78/100)
-│   ├── article_7.json      # Climate Science (82/100)
-│   └── article_8.json      # Election Facts (75/100)
+│ ├── article_1.json # Misinformation articles
+│ ├── article_2.json
+│ ├── article_3.json
+│ ├── article_4.json
+│ ├── article_5.json
+│ ├── article_6.json # High-credibility articles
+│ ├── article_7.json
+│ └── article_8.json
 │
 ├── frontend/
-│   ├── index.html          # Main HTML file
-│   └── app.js              # JavaScript + D3.js
+│ ├── index.html # Main HTML file
+│ └── app.js # JavaScript + D3.js
 │
-└── README.md               # This file
-```
-
+└── README.md # Documentation
 ---
 
 ## 🚀 Quick Start
@@ -240,22 +199,6 @@ http://localhost:8000
 | Climate Science | 82/100 🟢 | 5 | 5 | 0 | 0 |
 | Election Facts | 75/100 🟢 | 5 | 5 | 0 | 0 |
 
----
-
-## 📊 Demo URLs
-
-| Topic | URL |
-|-------|-----|
-| Vaccine Misinformation | `https://fakenews.com/vaccine-heart-problems` |
-| Climate Hoax | `https://climatedenial.org/climate-hoax` |
-| Election Fraud | `https://electionfake.com/voter-fraud` |
-| Essential Oils | `https://naturalhealingblog.com/miracle-cure` |
-| 5G Conspiracy | `https://techconspiracy.net/5g-brain-control` |
-| Vaccine Facts | `https://cdc.gov/covid-vaccines-safety` |
-| Climate Science | `https://ipcc.ch/climate-report-2024` |
-| Election Facts | `https://electionsecurity.gov/2024-results` |
-
----
 
 ## 🌍 Impact & Use Cases
 
@@ -307,16 +250,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Flask** for the lightweight backend framework
 - **All contributors and testers**
 
----
-
-## 📧 Contact
-
-- **Project Lead:** [Your Name]
-- **Email:** [Your Email]
-- **GitHub:** [Your GitHub Link]
-- **Twitter:** [Your Twitter Handle]
-
----
 
 ## ⭐ Show Your Support
 
