@@ -16,10 +16,9 @@
 
     <style>
         /* ============================================
-                   SOURCE SLEUTH - COMPLETE CSS
-                   ============================================ */
+           SOURCE SLEUTH - COMPLETE CSS
+           ============================================ */
 
-        /* ----- CSS Variables ----- */
         :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
@@ -38,9 +37,6 @@
             --radius-sm: 10px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-green: linear-gradient(135deg, #00b894, #00cec9);
-            --gradient-yellow: linear-gradient(135deg, #fdcb6e, #f39c12);
-            --gradient-red: linear-gradient(135deg, #fd79a8, #e17055);
             --glow-primary: 0 0 60px rgba(102, 126, 234, 0.15);
         }
 
@@ -299,15 +295,9 @@
             display: inline-block;
         }
 
-        .dot.green {
-            background: #00b894;
-        }
-        .dot.yellow {
-            background: #fdcb6e;
-        }
-        .dot.red {
-            background: #e17055;
-        }
+        .dot.green { background: #00b894; }
+        .dot.yellow { background: #fdcb6e; }
+        .dot.red { background: #e17055; }
 
         /* ----- Input Section ----- */
         .input-section {
@@ -467,9 +457,7 @@
         }
 
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
         #loading p {
@@ -587,18 +575,6 @@
             height: 10px;
             border-radius: 50%;
             display: inline-block;
-        }
-
-        .confidence-badge {
-            display: inline-block;
-            padding: 2px 12px;
-            border-radius: 12px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            background: rgba(0, 184, 148, 0.15);
-            color: #00b894;
-            border: 1px solid rgba(0, 184, 148, 0.2);
-            margin-left: 8px;
         }
 
         /* ----- Visualization ----- */
@@ -764,15 +740,9 @@
             box-shadow: var(--shadow-sm);
         }
 
-        .claim-item.green {
-            border-left-color: #00b894;
-        }
-        .claim-item.yellow {
-            border-left-color: #fdcb6e;
-        }
-        .claim-item.red {
-            border-left-color: #e17055;
-        }
+        .claim-item.green { border-left-color: #00b894; }
+        .claim-item.yellow { border-left-color: #fdcb6e; }
+        .claim-item.red { border-left-color: #e17055; }
 
         .claim-text {
             font-weight: 500;
@@ -799,16 +769,9 @@
             color: white;
         }
 
-        .badge.green {
-            background: #00b894;
-        }
-        .badge.yellow {
-            background: #fdcb6e;
-            color: #1a1a2e;
-        }
-        .badge.red {
-            background: #e17055;
-        }
+        .badge.green { background: #00b894; }
+        .badge.yellow { background: #fdcb6e; color: #1a1a2e; }
+        .badge.red { background: #e17055; }
 
         .claim-sources {
             margin-top: 10px;
@@ -964,22 +927,10 @@
             box-shadow: var(--shadow-md);
         }
 
-        .share-btn.twitter {
-            background: #1da1f2;
-            color: white;
-        }
-        .share-btn.linkedin {
-            background: #0a66c2;
-            color: white;
-        }
-        .share-btn.download {
-            background: var(--gradient-primary);
-            color: white;
-        }
-        .share-btn.pdf {
-            background: #e17055;
-            color: white;
-        }
+        .share-btn.twitter { background: #1da1f2; color: white; }
+        .share-btn.linkedin { background: #0a66c2; color: white; }
+        .share-btn.download { background: var(--gradient-primary); color: white; }
+        .share-btn.pdf { background: #e17055; color: white; }
 
         /* ----- History ----- */
         .history-container {
@@ -1093,106 +1044,35 @@
         }
 
         /* ----- Responsive ----- */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-        }
-
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .hero h2 {
-                font-size: 1.2rem;
-            }
-            .trust-score {
-                flex-direction: column;
-                text-align: center;
-            }
-            .score-circle {
-                width: 110px;
-                height: 110px;
-            }
-            .score-number {
-                font-size: 2.5rem;
-            }
-            .input-box {
-                flex-direction: column;
-            }
-            .btn-primary {
-                justify-content: center;
-                width: 100%;
-            }
-            .btn-voice {
-                width: 100%;
-                justify-content: center;
-            }
-            .compare-grid {
-                grid-template-columns: 1fr;
-            }
-            .compare-vs {
-                padding: 10px 0;
-            }
-            .vis-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .claims-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .nav-badge {
-                display: none;
-            }
-            .navbar {
-                padding: 0.6rem 1rem;
-            }
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            .legend-hero {
-                gap: 14px;
-            }
-            .score-stats {
-                justify-content: center;
-            }
-            .input-tabs {
-                flex-direction: row;
-            }
-            .input-tab {
-                font-size: 0.75rem;
-                padding: 8px 12px;
-            }
-            .nav-actions {
-                gap: 8px;
-            }
-            .language-select {
-                font-size: 0.65rem;
-                padding: 4px 8px;
-            }
+            .hero h1 { font-size: 2.2rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .trust-score { flex-direction: column; text-align: center; }
+            .score-circle { width: 110px; height: 110px; }
+            .score-number { font-size: 2.5rem; }
+            .input-box { flex-direction: column; }
+            .btn-primary { justify-content: center; width: 100%; }
+            .btn-voice { width: 100%; justify-content: center; }
+            .compare-grid { grid-template-columns: 1fr; }
+            .compare-vs { padding: 10px 0; }
+            .vis-header { flex-direction: column; align-items: flex-start; }
+            .claims-header { flex-direction: column; align-items: flex-start; }
+            .nav-badge { display: none; }
+            .navbar { padding: 0.6rem 1rem; }
+            .logo-text { font-size: 1.2rem; }
+            .legend-hero { gap: 14px; }
+            .score-stats { justify-content: center; }
+            .nav-actions { gap: 8px; }
+            .language-select { font-size: 0.65rem; padding: 4px 8px; }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 16px 12px;
-            }
-            .hero {
-                padding: 30px 10px 20px;
-            }
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            .input-section {
-                padding: 20px;
-            }
-            .score-circle {
-                width: 100px;
-                height: 100px;
-            }
-            .score-number {
-                font-size: 2.2rem;
-            }
+            .container { padding: 16px 12px; }
+            .hero { padding: 30px 10px 20px; }
+            .hero h1 { font-size: 1.8rem; }
+            .input-section { padding: 20px; }
+            .score-circle { width: 100px; height: 100px; }
+            .score-number { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -1213,7 +1093,7 @@
                 </div>
             </a>
             <div class="nav-actions">
-                <select id="languageSelect" class="language-select" onchange="setLanguage(this.value)">
+                <select id="languageSelect" class="language-select">
                     <option value="en">🇬🇧 English</option>
                     <option value="es">🇪🇸 Español</option>
                     <option value="hi">🇮🇳 हिन्दी</option>
@@ -1277,7 +1157,6 @@
                 </div>
             </div>
 
-            <!-- Keyboard Shortcut Hint -->
             <div style="margin-top:12px;text-align:right;font-size:0.65rem;color:var(--text-muted);">
                 <i class="fas fa-keyboard"></i> Press Ctrl+Enter to analyze
             </div>
@@ -1307,9 +1186,6 @@
                             <span class="score-stat"><span class="dot yellow"></span> <span id="detailWeak">0</span> Weak</span>
                             <span class="score-stat"><span class="dot red"></span> <span id="detailUnsourced">0</span> Unsourced</span>
                             <span class="score-stat"><i class="fas fa-list-ul" style="color:var(--text-muted);"></i> <span id="detailTotal">0</span> Claims</span>
-                            <span class="score-stat" id="confidenceDisplay">
-                                <i class="fas fa-shield-alt" style="color:#00b894;"></i> <span id="confidenceText">Analyzing...</span>
-                            </span>
                         </div>
                     </div>
                 </div>

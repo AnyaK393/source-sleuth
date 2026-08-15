@@ -10,7 +10,7 @@ app = Flask(__name__)
 # 🔑 API KEYS
 # ============================================================
 
-FACTCHECK_API_KEY = "API KEY HERE"  # Replace with your Google Fact Check API key
+FACTCHECK_API_KEY = ""  # Add your key here if you have one
 
 # ============================================================
 # CORS HEADERS
@@ -36,8 +36,7 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 def fact_check_with_google(claim_text):
     """Check a claim using Google Fact Check API (FREE - 100 searches/day)"""
-    if not FACTCHECK_API_KEY or FACTCHECK_API_KEY == "YOUR_API_KEY_HERE":
-        print("⚠️ No Fact Check API key provided. Using fallback data.")
+    if not FACTCHECK_API_KEY or FACTCHECK_API_KEY == "":
         return None
     
     try:
@@ -49,7 +48,6 @@ def fact_check_with_google(claim_text):
             "pageSize": 3
         }
         
-        print(f"🔍 Fact-checking: {claim_text[:50]}...")
         response = requests.get(url, params=params, timeout=10)
         
         if response.status_code == 200:
@@ -58,26 +56,20 @@ def fact_check_with_google(claim_text):
             
             results = []
             for claim in claims[:3]:
-                claim_text_result = claim.get('text', '')
-                claimant = claim.get('claimant', 'Unknown')
-                claim_date = claim.get('claimDate', '')
-                
                 reviews = claim.get('claimReview', [])
                 if reviews:
                     review = reviews[0]
                     results.append({
-                        'text': claim_text_result[:200],
-                        'claimant': claimant,
+                        'text': claim.get('text', '')[:200],
+                        'claimant': claim.get('claimant', 'Unknown'),
                         'review_text': review.get('textualRating', ''),
                         'review_url': review.get('url', ''),
                         'publisher': review.get('publisher', {}).get('name', 'Unknown'),
-                        'date': claim_date
+                        'date': claim.get('claimDate', '')
                     })
             
-            print(f"✅ Fact-check found {len(results)} results")
             return results
         else:
-            print(f"⚠️ Fact Check API error: {response.status_code}")
             return None
             
     except Exception as e:
@@ -120,17 +112,17 @@ def detect_article_id(text):
     # Article 5: 5G Conspiracy
     if any(k in text_lower for k in ['5g', 'brain control', 'conspiracy']):
         return 5
-    # Article 6: Vaccine Facts (High Credibility)
+    # Article 6: Vaccine Facts
     if any(k in text_lower for k in ['cdc', 'vaccine safety']):
         return 6
-    # Article 7: Climate Science (High Credibility)
+    # Article 7: Climate Science
     if any(k in text_lower for k in ['ipcc', 'climate science']):
         return 7
-    # Article 8: Election Facts (High Credibility)
+    # Article 8: Election Facts
     if any(k in text_lower for k in ['election security', 'election officials', 'bipartisan']):
         return 8
     
-    return 1  # Default to Article 1
+    return 1
 
 # ============================================================
 # 🏠 HOME ROUTE
@@ -141,11 +133,10 @@ def home():
     return jsonify({
         'message': '🚀 Source Sleuth API',
         'status': 'running',
-        'data_folder': DATA_DIR,
         'articles_available': 8,
         'endpoints': {
-            '/api/analyze': 'POST - Analyze article (send url or text)',
-            '/api/articles': 'GET - List all available articles'
+            '/api/analyze': 'POST - Analyze article',
+            '/api/articles': 'GET - List all articles'
         }
     })
 
@@ -189,14 +180,11 @@ def analyze_article():
         if not content_to_analyze.strip():
             return jsonify({'success': False, 'error': 'No content provided'}), 400
 
-        # Smart detection
         article_id = detect_article_id(content_to_analyze)
         article_data = load_article_data(article_id)
 
         if article_data:
-            # 🔍 FACT-CHECK EACH CLAIM
             claims = article_data.get('claims', [])
-            fact_checked_count = 0
             for claim in claims:
                 claim_text = claim.get('text', '')
                 if claim_text:
@@ -204,24 +192,18 @@ def analyze_article():
                     if fact_results:
                         claim['fact_check_results'] = fact_results
                         claim['fact_checked'] = True
-                        fact_checked_count += 1
                     else:
                         claim['fact_checked'] = False
 
             article_data['_detected_by'] = 'keyword_analysis'
             article_data['_confidence'] = 85
-            article_data['_fact_checked_count'] = fact_checked_count
-            article_data['_total_claims'] = len(claims)
-            
-            print(f"✅ Analyzed article {article_id}: {article_data.get('title', 'Unknown')}")
-            print(f"   📊 {fact_checked_count}/{len(claims)} claims fact-checked")
             
             return jsonify({'success': True, 'data': article_data})
         else:
-            return jsonify({'success': False, 'error': f'Could not analyze content. Article ID: {article_id} not found.'}), 404
+            return jsonify({'success': False, 'error': 'Could not analyze content'}), 404
 
     except Exception as e:
-        print(f"❌ Error in analyze_article: {e}")
+        print(f"❌ Error: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # ============================================================
@@ -234,21 +216,16 @@ if __name__ == '__main__':
     print("=" * 50)
     print(f"📁 Data folder: {DATA_DIR}")
     
-    # Count articles
     article_files = [f for f in os.listdir(DATA_DIR) if f.startswith('article_') and f.endswith('.json')]
     print(f"📚 {len(article_files)} articles loaded")
     
-    # Check API key
-    if FACTCHECK_API_KEY and FACTCHECK_API_KEY != "YOUR_API_KEY_HERE":
+    if FACTCHECK_API_KEY and FACTCHECK_API_KEY != "":
         print("✅ Fact Check API key: Configured")
     else:
-        print("⚠️ Fact Check API key: Not configured (using fallback data)")
+        print("⚠️ Fact Check API key: Not configured")
     
     print("=" * 50)
     print("📡 Server running at: http://localhost:5000")
-    print("🔍 Test with: http://localhost:5000/api/articles")
-    print("=" * 50)
-    print("Press CTRL+C to stop")
     print("=" * 50)
     
     app.run(debug=True, port=5000)
