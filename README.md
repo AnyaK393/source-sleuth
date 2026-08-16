@@ -1,6 +1,6 @@
 # 📄 PROFESSIONAL README.md FOR SOURCE SLEUTH
 
-```markdown
+
 # 🕸️ Source Sleuth - Visual Citation Mapping Tool
 
 [![UNESCO](https://img.shields.io/badge/UNESCO-Youth%20Hackathon%202026-8B5CF6?style=for-the-badge&logo=unesco)](https://www.unesco.org/en/media-information-literacy)
@@ -78,7 +78,7 @@ Source Sleuth makes media literacy **visual, interactive, and accessible** to ev
 | **Data** | JSON-based article database (8 articles, 40+ claims) |
 
 ---
-
+---
 ## 📁 Project Structure
 
 source-sleuth/
@@ -261,7 +261,5 @@ If you found this project helpful, please give it a ⭐ on GitHub!
 
 [![UNESCO](https://img.shields.io/badge/UNESCO-Youth%20Hackathon%202026-8B5CF6?style=for-the-badge&logo=unesco)](https://www.unesco.org/en/media-information-literacy)
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/yourusername/source-sleuth)
-```
 
----
 
